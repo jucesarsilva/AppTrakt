@@ -1,0 +1,11 @@
+/* app css stylesheet */
+#img-logo {
+    margin-top: -5px;
+    margin-left: -5px;
+    width: 32px;
+    height: 32px;
+}
+
+.main-content {
+    margin-top: 51px;
+}
