@@ -18,13 +18,13 @@
 
         return {
             'getSummary': function __getSummary(id) {
-                return $http.get(ApiTraktSetting.api + '/movies/' + id);
+                return $http.get(ApiTraktSetting.api + '/movies/' + id + '?extended=full');
             },
             'getComments': function __getComments(id) {
-                return $http.get(ApiTraktSetting.api + '/movies/' + id + "/comments/newest?page=1&limit=1000");
+                return $http.get(ApiTraktSetting.api + '/movies/' + id + "/comments/newest?page=1&limit=1000&extended=full");
             },
             'getRatings': function __getRatings(id) {
-                return $http.get(ApiTraktSetting.api + '/movies/' + id + "/ratings");
+                return $http.get(ApiTraktSetting.api + '/movies/' + id + "/ratings?extended=full");
             }
         };
     };

@@ -14,19 +14,23 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-12">
-                <p class="text-center"><h2 class="text-center">Detalhes</h2></p>
-                <p class="text-center">Nome: {{detail.movie.title}}</p>
-                <p class="text-center">Ano: {{detail.movie.year}}</p>
-                <p class="text-center">Rate: {{detail.ratings.rating}}</p>
-                <p class="text-center">Votos: {{detail.ratings.votes}}</p>
+                <div class="well">
+                    <p class="text-center"><h2 class="text-center">Detalhes</h2></p>
+                    <p class="text-center"><b>Sinopse:</b> {{detail.movie.overview}}</p>
+                    <p class="text-center"><b>Nome:</b> {{detail.movie.title}}</p>
+                    <p class="text-center"><b>Ano:</b> {{detail.movie.year}}</p>
+                    <p class="text-center"><b>Rate:</b> {{detail.ratings.rating}}</p>
+                    <p class="text-center"><b>Votos:</b> {{detail.ratings.votes}}</p>
+                </div>
             </div>
             <hr/>
             <p><h2 class="text-center">Comentários</h2></p>
-            <div class="col-sm-12 col-md-12" data-ng-repeat="($indexComment, comment) in detail.comments track by $indexComment">
-                <div class="row">
-                    <div class="post">
-                        <p class="post-content text-center" style="font-size: 12px;">
-                           Comentário: {{comment.comment}}
+            <div class="col-sm-12 col-md-12 well">
+                <div class="row" style="margin-bottom: 5px;" data-ng-repeat="($indexComment, comment) in detail.comments track by $indexComment">
+                    <div class="post" style="background-color: white;">
+                        <p><b>Usuário:</b> {{comment.user.name || comment.user.username}} <span>- {{comment.created_at | moment:"MM/DD/YYYY hh:mm:ss":true }}</span></p>
+                        <p class="post-content" style="font-size: 12px;">
+                            <b>Comentário:</b> {{comment.comment}}
                         </p>
                     </div>
                 </div>
