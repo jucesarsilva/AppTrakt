@@ -13,7 +13,7 @@
         .factory('$HttpInterceptor', $HttpInterceptor)
         .config(Config);
 
-    $HttpInterceptor.$inject = ['$q'];
+    $HttpInterceptor.$inject = ['$q', "ApiTraktSetting"];
     Config.$inject = ['$httpProvider', '$locationProvider', '$provide'];
 
      /**
@@ -21,27 +21,21 @@
      * @params
      * @returns
      */
-    function $HttpInterceptor($q, $HttpTransform) {
+    function $HttpInterceptor($q, ApiTraktSetting) {
 
-        var _service = {
+        var factory = {
             request: function (config) {
                 
                 try {
-                    //config.headers["Access-Control-Allow-Origin"] = "*";
-                    //config.headers["Access-Control-Allow-Methods"] = "GET,POST,PUT,DELETE,OPTIONS";
-                    //config.headers["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, X-Requested-With, trakt-api-key, trakt-api-version";
-                    
-                    config.headers["Content-Type"] = "application/x-www-form-urlencoded";
-                    config.headers["Trakt-Api-Key"] = "f0b54aad3fd33efbcf12d70218dae129fdf59e1374b653321d0dc5fcd393c546";
-                    config.headers["Trakt-Api-Version"] = "2";
+                    config.headers["Content-Type"] = "application/json";
+                    config.headers["Trakt-Api-Key"] = ApiTraktSetting.clientID;
+                    config.headers["Trakt-Api-Version"] = ApiTraktSetting.apiVersion;
                 } 
                 catch(e) {
                 }
-                
                 return config || $q.when(config);
             },
             response: function (response) {
-               
                 return response || $q.when(response);
             },
             responseError: function (request) {
@@ -50,7 +44,7 @@
             }
          };
 
-         return _service;
+         return factory;
     };
 
     /**

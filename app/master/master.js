@@ -20,17 +20,31 @@
 
     .controller('MasterController', MasterController);
     
-    MasterController.$inject = ['$scope', 'ConfigRepository']
+    MasterController.$inject = ['$scope', 'MasterRepository', '$http']
     
-    function MasterController($scope, ConfigRepository) {
+    function MasterController($scope, MasterRepository, $http) {
         
-        /*
-        ConfigRepository.getAuth(function(result){
-            console.log(result);
-        }, function(result){
-            console.log(result);
-        });
-        */
+        $scope.movies = [];
+        $scope.currentPage = 1;
+        $scope.pageSize = 4;
+        $scope.limit = $scope.pageSize;
+        $scope.loading = false;
+        
+        function loadMore(_pageSize) {
+            $scope.loading = true;
+            if(_pageSize) $scope.limit += _pageSize;
+            MasterRepository.getMoviesPopular($scope.currentPage, $scope.limit)
+            .then(function(result){
+                $scope.loading = false;
+                $scope.movies = result.data;
+            }, function(data) {
+                $scope.loading = false;
+                console.log("Erro ao carregar os dados.", data);
+            });
+        };
+        $scope.loadMore = loadMore;
+        
+        loadMore();
     };
     
 })();

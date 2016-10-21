@@ -17,8 +17,11 @@
     function MasterRepository($http, ApiTraktSetting) {
 
         return {
-            'getUser': function __getUser() {
-                return $http.get(ApiTraktSetting.url + '/Like/GetWhoLiked');
+            'getMoviesPopular': function __getMoviesPopular(currentPage, pageSize) {
+                return $http.get(ApiTraktSetting.api + '/movies/popular?page='+ currentPage + '&limit=' + pageSize);
+            },
+            'getMoviesTrending': function __getMoviesTrending(currentPage, pageSize) {
+                return $http.get(ApiTraktSetting.api + '/movies/trending?page='+ currentPage + '&limit=' + pageSize);
             }
         };
     };

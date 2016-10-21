@@ -1,1 +1,23 @@
-<p>partial for master</p>
+<section>
+    <div class="container">
+        <div class = "row">
+            <div data-ng-repeat="($indexMovie, movie) in movies track by $indexMovie" class="col-sm-6 col-md-3">
+                <div class="col-sm-12 col-md-12">
+                    <a href="#!/detail?id={{movie.ids.slug}}" class = "thumbnail">
+                        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" alt = "Generic placeholder thumbnail">
+                    </a>
+                    <p class="text-center">Nome: {{movie.title}}</p>
+                    <p class="text-center">Ano: {{movie.year}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-ng-class="{'activate': loading}" data-ng-click="loadMore(pageSize)">
+            <div class="post">
+                <p class="post-content text-center">
+                    <br />
+                    <a href="javascript:void(0)" class="post-more">Carregar mais</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

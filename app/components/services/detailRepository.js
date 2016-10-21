@@ -10,15 +10,21 @@
 
     angular
         .module('AppTrakt.services')
-        .factory('MasterRepository', MasterRepository);
+        .factory('DetailRepository', DetailRepository);
 
-    MasterRepository.$inject = ['$http', 'ApiTraktSetting'];
+    DetailRepository.$inject = ['$http', 'ApiTraktSetting'];
 
-    function MasterRepository($http, ApiTraktSetting) {
+    function DetailRepository($http, ApiTraktSetting) {
 
         return {
-            'getUser': function __getUser() {
-                return $http.get(ApiTraktSetting.url + '/Like/GetWhoLiked');
+            'getSummary': function __getSummary(id) {
+                return $http.get(ApiTraktSetting.api + '/movies/' + id);
+            },
+            'getComments': function __getComments(id) {
+                return $http.get(ApiTraktSetting.api + '/movies/' + id + "/comments/newest?page=1&limit=1000");
+            },
+            'getRatings': function __getRatings(id) {
+                return $http.get(ApiTraktSetting.api + '/movies/' + id + "/ratings");
             }
         };
     };

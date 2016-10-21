@@ -1,1 +1,36 @@
-<p>partial for detail</p>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <a href="#!/master" class="btn btn-default">Voltar</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <a href="javascript:void(0)" class = "thumbnail">
+                    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" alt=" thumbnail">
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <p class="text-center"><h2 class="text-center">Detalhes</h2></p>
+                <p class="text-center">Nome: {{detail.movie.title}}</p>
+                <p class="text-center">Ano: {{detail.movie.year}}</p>
+                <p class="text-center">Rate: {{detail.ratings.rating}}</p>
+                <p class="text-center">Votos: {{detail.ratings.votes}}</p>
+            </div>
+            <hr/>
+            <p><h2 class="text-center">Comentários</h2></p>
+            <div class="col-sm-12 col-md-12" data-ng-repeat="($indexComment, comment) in detail.comments track by $indexComment">
+                <div class="row">
+                    <div class="post">
+                        <p class="post-content text-center" style="font-size: 12px;">
+                           Comentário: {{comment.comment}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
