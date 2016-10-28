@@ -8,7 +8,7 @@
     'use strict';
 
     angular
-        .module('AppTrakt.services')
+        .module(modules.services)
         .provider('$httpTransform', $httpTransform)
         .factory('$authenticationInterceptor', $authenticationInterceptor)
         .config($config);
@@ -124,8 +124,6 @@
          * @returns
          */
         function request(config) {  
-            config.headers["Cache-Control"] = "max-age=0,no-cache, must-revalidate";
-            config.headers["Pragma"] = "no-cache";
             config.headers["Content-Type"] = "application/json";
             config.headers["Trakt-Api-Key"] = $apiSetting.client_id;
             config.headers["Trakt-Api-Version"] = $apiSetting.api_version;

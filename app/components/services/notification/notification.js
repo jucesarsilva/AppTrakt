@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('services')
+        .module(modules.services)
         .factory('$notification', Notification);
 
     Notification.$inject = ['$window', '$injector'];

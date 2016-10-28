@@ -3,12 +3,12 @@
  * @author julio_c.silva@outlook.com
  * @since 28/10/2016
  */
-(function __alert{
+(function __alert(){
  
     'use strict';
 
     angular
-        .module('services')
+        .module(modules.directives)
         .directive('alert', $alert)
         .directive('autoClose', $autoClose);
     
@@ -20,7 +20,7 @@
             restrict: 'E',
             scope: {},
             controller: function () { },
-            templateUrl: 'alert.html',
+            templateUrl: '/components/directives/alert/alert.html',
             replace: true,
             link: function ( $scope, elem, attrs ) {
                 $scope.notifications = $notification.get();

@@ -1,4 +1,4 @@
-angular.module('AppTrakt.directives')
+angular.module(modules.directives)
 .controller('PaginationController', ['$scope', '$attrs', '$parse', function ($scope, $attrs, $parse) {
     var self = this,
         ngModelCtrl = { $setViewValue: angular.noop }, // nullModelCtrl

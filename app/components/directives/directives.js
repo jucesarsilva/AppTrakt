@@ -9,6 +9,6 @@
     
     'use strict';
 
-    angular.module('AppTrakt.directives', []);
+    angular.module(modules.directives, []);
     
 })();

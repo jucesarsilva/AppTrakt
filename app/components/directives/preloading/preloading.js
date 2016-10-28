@@ -9,7 +9,7 @@
     'use strict';
 
     angular
-        .module('AppTrakt.directives')
+        .module(modules.directives)
         .directive('ngShowLoading', $ngShowLoading)
         .directive('ngHideLoading', $ngHideLoading)
         .directive('preloading', $preloading);

@@ -7,28 +7,24 @@
 (function __AppTrakt(){
     
     'use strict';
-
-    angular.module('AppTrakt', [
-      'ngRoute',
-      'AppTrakt.master',
-      'AppTrakt.detail',
-      'AppTrakt.version',
-      'AppTrakt.directives',
-      'AppTrakt.filters',
-      'AppTrakt.services',
+    
+    angular.module(modules.main, ['ngRoute',
+      modules.master,
+      modules.detail,
+      modules.version,
+      modules.directives,
+      modules.filters,
+      modules.services
     ])
     .config(Config)
     .run(Run)
     
-    Run.$inject = ['$apiSetting', '$util', 'ConfigRepository'];
+    Run.$inject = ['$apiSetting', '$util'];
     Config.$inject = ['$locationProvider', '$routeProvider', '$httpProvider'];
     
-    function Run($apiSetting, $util, ConfigRepository) {
-        
+    function Run($apiSetting, $util) {
         $apiSetting.code = $util.getUrlParams().code;
-        
-        if(!$apiSetting.code)
-            window.open($apiSetting.url_get_code, '_self');
+        if(!$apiSetting.code) window.open($apiSetting.url_get_code, '_self');
     };
     
     function Config($locationProvider, $routeProvider, $httpProvider) {

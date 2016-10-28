@@ -11,4 +11,4 @@ modules.version = modules.main.concat(".version");
 
 //controllers modules
 modules.master = modules.main.concat(".master");
-modules.details = modules.main.concat(".details");
+modules.detail = modules.main.concat(".detail");

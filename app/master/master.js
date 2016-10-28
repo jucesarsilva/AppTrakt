@@ -20,9 +20,11 @@
 
     .controller('MasterController', MasterController);
     
-    MasterController.$inject = ['$scope', 'MasterRepository', '$http']
+    MasterController.$inject = ['$scope', 'MasterRepository', '$http', '$notification']
     
-    function MasterController($scope, MasterRepository, $http) {
+    function MasterController($scope, MasterRepository, $http, $notification) {
+        
+        $notification.success("top")
         
         $scope.movies = [];
         $scope.currentPage = 1;

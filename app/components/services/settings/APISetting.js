@@ -23,7 +23,7 @@
         };
     
     angular
-        .module('AppTrakt.services')
+        .module(modules.services)
         .provider("$apiSettingConfig", $apiSettingConfig)
         .factory('$apiSetting', $apiSetting)
         .constant("$apiSettingOptions", $apiSettingOptionsDefault);
@@ -291,8 +291,8 @@
         return {
             url_base: $apiSettingConfig.getUrlBase(),
             url_get_code: $apiSettingConfig.getUrlGetCode(),
-            url_get_authentication_excluded: $apiSettingConfig.getUrlMethodExcluded(),
-            url_get_authentication_token: $apiSettingConfig.getUrlAuthentication(),
+            url_get_authentication_excluded: $apiSettingConfig.getUrlGetAuthenticationExcluded(),
+            url_get_authentication_token: $apiSettingConfig.getUrlGetAuthenticationToken(),
             url_api: $apiSettingConfig.getUrlApi(),
             api_version: $apiSettingConfig.getApiVersion(),
             client_id: $apiSettingConfig.getClientId(),

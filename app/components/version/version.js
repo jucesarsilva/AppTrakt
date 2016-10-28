@@ -7,7 +7,7 @@
     
     'use strict';
 
-    angular.module('AppTrakt.version', [
+    angular.module(modules.version, [
       'AppTrakt.version.interpolate-filter',
       'AppTrakt.version.version-directive'
     ])

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel=stylesheet href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="components/directives/preloading/preloading.css">
+    <link rel="stylesheet" href="components/directives/alert/alert.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -40,12 +42,9 @@
             </div>
         </div>
     </nav>
-    
+    <preloading></preloading>
     <div class="main-content" data-ng-view></div>
-    
-    <!-- In production use:
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-    -->
+    <!-- scripts -->
     <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="bower_components/moment/min/locales.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -60,15 +59,17 @@
     <!-- app components -->
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>
-    <script src="components/filters/moment.js"></script> 
+    <script src="components/filters/moment/moment.js"></script> 
+    <script src="components/filters/trusted/trusted.js"></script> 
     <script src="components/services/settings/utils.js"></script>
     <script src="components/services/cookie/angular-cookie.js"></script> 
     <script src="components/services/settings/APISetting.js"></script> 
     <script src="components/services/notification/notification.js"></script>
     <script src="components/services/settings/authenticationinterceptor.service.js"></script>
-    <script src="components/services/repositories/configRepository.js"></script>
     <script src="components/services/repositories/masterRepository.js"></script>
     <script src="components/services/repositories/detailRepository.js"></script>
+    <script src="components/directives/preloading/preloading.js"></script>
+    <script src="components/directives/alert/alert.js"></script>
     <script src="app.js"></script>
     <script src="master/master.js"></script>
     <script src="detail/detail.js"></script>

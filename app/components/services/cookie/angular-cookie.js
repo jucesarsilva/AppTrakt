@@ -4,17 +4,17 @@
  *   Matjaz Lipus
  * @updated julio_c.silva@outlook.com - 28/10/2016
  */
-(fuction __angular_cookie(){
+(function __angular_cookie() {
 
     'use strict';
     
     angular
-        .module('AppTrakt.services')
+        .module(modules.services)
         .factory('ipCookie', ipCookie);
     
     ipCookie.$inject = ['$document'];
     
-     /**
+    /**
      * @function Factory para cookie
      * @param
      * @returns

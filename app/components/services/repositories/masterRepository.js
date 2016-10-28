@@ -9,19 +9,19 @@
     'use strict';
 
     angular
-        .module('AppTrakt.services')
+        .module(modules.services)
         .factory('MasterRepository', MasterRepository);
 
-    MasterRepository.$inject = ['$http', 'ApiTraktSetting'];
+    MasterRepository.$inject = ['$http', '$apiSetting'];
 
-    function MasterRepository($http, ApiTraktSetting) {
+    function MasterRepository($http, $apiSetting) {
 
         return {
             'getMoviesPopular': function __getMoviesPopular(currentPage, pageSize) {
-                return $http.get(ApiTraktSetting.api + '/movies/popular?page='+ currentPage + '&limit=' + pageSize);
+                return $http.get($apiSetting.url_api + '/movies/popular?page='+ currentPage + '&limit=' + pageSize);
             },
             'getMoviesTrending': function __getMoviesTrending(currentPage, pageSize) {
-                return $http.get(ApiTraktSetting.api + '/movies/trending?page='+ currentPage + '&limit=' + pageSize);
+                return $http.get($apiSetting.url_api + '/movies/trending?page='+ currentPage + '&limit=' + pageSize);
             }
         };
     };

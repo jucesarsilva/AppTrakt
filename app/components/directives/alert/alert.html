@@ -11,8 +11,8 @@
             Fechar
         </button>
         <div>
-            <div class="toast-title" ng-bind-html="notification.title"></div>
-            <div class="toast-message" ng-bind-html="notification.message"></div>
+            <div class="toast-title" ng-bind-html="notification.title | trusted"></div>
+            <div class="toast-message" ng-bind-html="notification.message | trusted"></div>
         </div>
     </div>
 </div>

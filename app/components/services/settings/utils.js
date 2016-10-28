@@ -9,7 +9,7 @@
     'use strict'
 
     angular
-        .module('AppTrakt.services')
+        .module(modules.services)
         .service('$util', Util);
 
     Util.$inject = ['$window'];
