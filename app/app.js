@@ -11,7 +11,6 @@
     angular.module(modules.main, ['ngRoute',
       modules.master,
       modules.detail,
-      modules.version,
       modules.directives,
       modules.filters,
       modules.services
