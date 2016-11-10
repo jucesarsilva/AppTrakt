@@ -20,16 +20,17 @@
 
     .controller('MasterController', MasterController);
     
-    MasterController.$inject = ['$scope', 'MasterRepository', 'ImageRepository', '$http', '$notification']
+    MasterController.$inject = ['$scope', 'MasterRepository', 'ImageRepository', '$http', '$notification', '$timeout']
     
-    function MasterController($scope, MasterRepository, ImageRepository, $http, $notification) {
+    function MasterController($scope, MasterRepository, ImageRepository, $http, $notification, $timeout) {
           
         $scope.movies = [];
         $scope.currentPage = 1;
         $scope.pageSize = 4;
         $scope.limit = $scope.pageSize;
         $scope.loading = false;
-
+        $scope.imageLoaderCount = 0;
+        
         /**
          * @function load movies
          * @param
@@ -102,9 +103,13 @@
             .success(function(data, status, headers, config){
                 movie.images = data;
                 movie.loading = true;
+                $scope.imageLoaderCount += 1;
                 $('#movie_image_' + movie.ids.tmdb).on('load', function () {
                     movie.loading = false;
                     $scope.safeApply();
+                    $scope.imageLoaderCount -= 1;
+                    if($scope.imageLoaderCount == 0) 
+                        $("html, body").animate({ scrollTop: $(document).height() }, "slow");
                 }.bind(this));
             })
             .error(function(data) {
