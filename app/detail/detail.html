@@ -1,15 +1,21 @@
 <alert></alert>
 <section>
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-bottom: 15px;">
             <div class="col-sm-12 col-md-12">
                 <a href="#!/master" class="btn btn-default">Voltar</a>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <a href="javascript:void(0)" class = "thumbnail">
-                    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg" alt=" thumbnail">
+            <div class="col-sm-12 col-md-12" class="text-center">
+                <div data-ng-show="detail.movie.loading" class="text-center">
+                    <div class="loading" style="position: relative; left:50%;"></div>
+                </div>
+                <a href="javascript:void(0)"
+                   data-ng-show="detail.movie.images && !detail.movie.loading" 
+                   class="thumbnail">
+                    <img id="movie_image_{{detail.movie.ids.tmdb}}" 
+                         ng-src="{{detail.movie.images.moviethumb[0].url}}">
                 </a>
             </div>
         </div>
@@ -29,7 +35,11 @@
             <div class="col-sm-12 col-md-12 well">
                 <div class="row" style="margin-bottom: 5px;" data-ng-repeat="($indexComment, comment) in detail.comments track by $indexComment">
                     <div class="post" style="background-color: white;">
-                        <p><b>Usuário:</b> {{comment.user.name || comment.user.username}} <span>- {{comment.created_at | moment:"MM/DD/YYYY hh:mm:ss":true }}</span></p>
+                        <p>
+                            <b>Usuário:</b> 
+                            {{comment.user.name || comment.user.username}} 
+                            <span>- {{comment.created_at | moment:"MM/DD/YYYY hh:mm:ss":true }}</span>
+                        </p>
                         <p class="post-content" style="font-size: 12px;">
                             <b>Comentário:</b> {{comment.comment}}
                         </p>

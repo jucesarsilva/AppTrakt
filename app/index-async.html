@@ -35,22 +35,25 @@
       'bower_components/moment/min/locales.min.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
+      'modules.js',
       'components/directives/directives.js',
       'components/filters/filters.js',
-      'components/filters/moment.js"',
       'components/services/services.js',
-      'components/services/apiTraklSetting.js',
-      'components/services/ipCookie.js',
-      'components/services/services.interceptor.js',
-      'components/services/utils.js',
-      'components/services/masterRepository.js',
-      'components/services/detailRepository.js',
+      'components/filters/moment/moment.js',
+      'components/filters/trusted/trusted.js',
+      'components/directives/preloading/preloading.js',
+      'components/directives/alert/alert.js',
+      'components/services/cookie/angular-cookie.js',
+      'components/services/settings/APISetting.js',
+      'components/services/notification/notification.js',
+      'components/services/settings/authenticationinterceptor.service.js',
+      'components/services/settings/utils.js',
+      'components/services/repositories/masterRepository.js',
+      'components/services/repositories/detailRepository.js',
+      'components/services/repositories/imageRepository.js',
       'app.js',
       'master/master.js',
-      'detail/detail.js',
-      'components/version/version.js',
-      'components/version/version-directive.js',
-      'components/version/interpolate-filter.js'
+      'detail/detail.js'
     ], function() {
       angular.bootstrap(document, ['AppTrakt']);
     });
@@ -59,10 +62,8 @@
   <link rel="stylesheet" href="app.css">
 </head>
 <body data-ng-cloak>
-  <!-- Menu -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -76,7 +77,6 @@
             </div>
         </div>
     </nav>
-    
     <div class="main-content" data-ng-view></div>
 </body>
 </html>

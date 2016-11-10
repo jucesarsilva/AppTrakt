@@ -5,18 +5,12 @@
     width: 32px;
     height: 32px;
 }
-
 .main-content {
-    margin-top: 51px;
+    margin-top: 65px;
 }
-
-#posts-container            { width:400px; border:1px solid #ccc; -webkit-border-radius:10px; -moz-border-radius:10px; }
-.post                       { padding:5px 10px 5px 100px; min-height:65px; border-bottom:1px solid #ccc; cursor:pointer;  }
-.post:hover                 { background-color:lightblue; }
-a.post-title                { font-weight:bold; font-size:26px; text-decoration:none; }
-a.post-title:hover          { text-decoration:underline; color:#900; }
-a.post-more                 { color:#900; }
-p.post-content              { font-size:26px; line-height:17px; padding-bottom:0; }
-#load-more                  { background-color:#eee; color:#999; font-weight:bold; text-align:center; padding:10px 0; cursor:pointer; }
-#load-more:hover            { color:#666; }
-.activate                   { background:url(/images/spinner.gif); background-repeat: no-repeat;}
+.loading{ 
+    background:url(/images/circular.gif); 
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+}

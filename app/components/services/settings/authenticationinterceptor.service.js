@@ -125,8 +125,10 @@
          */
         function request(config) {  
             config.headers["Content-Type"] = "application/json";
-            config.headers["Trakt-Api-Key"] = $apiSetting.client_id;
-            config.headers["Trakt-Api-Version"] = $apiSetting.api_version;
+            if(config.url.match($apiSetting.url_api) != null) {
+                config.headers["Trakt-Api-Key"] = $apiSetting.client_id;
+                config.headers["Trakt-Api-Version"] = $apiSetting.api_version;
+            }
             if (!factory.components.loaded) {
                 factory.components.loaded = true;
                 factory.components.$http = $injector.get('$apiSetting');
@@ -136,8 +138,10 @@
                 factory.components.$notification = $injector.get('$notification');
             }
             $httpTransform.loading();
-            if (!$apiSetting.url_get_authentication_token || !$apiSetting.url_get_authentication_excluded || !$apiSetting.code) {
-                $httpTransform.stop();
+            if (config.url.match($apiSetting.url_api) == null || 
+                !$apiSetting.url_get_authentication_token || 
+                !$apiSetting.url_get_authentication_excluded || 
+                !$apiSetting.code) {
                 return config || $q.when(config);
             }
             //Ignora o request da url 'Account/GetAuthenticationToken'

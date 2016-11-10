@@ -20,9 +20,9 @@
     
     .controller('DetailController', DetailController);
        
-    DetailController.$inject = ['$scope', 'DetailRepository', '$routeParams'];
+    DetailController.$inject = ['$scope', 'DetailRepository', 'ImageRepository', '$routeParams'];
     
-    function DetailController($scope, DetailRepository, $routeParams) {
+    function DetailController($scope, DetailRepository, ImageRepository, $routeParams) {
         
         $scope.id = $routeParams.id;
         $scope.detail = {};
@@ -30,45 +30,109 @@
         function loadMovie(__callback) {
             $scope.loading = true;
             DetailRepository.getSummary($scope.id)
-            .then(function(result){
+            .success(function(data, status, headers, config){
                 $scope.loading = false;
-                $scope.detail.movie = result.data;
+                $scope.detail.movie = data;
+                getImage($scope.detail.movie);
                 if(__callback) __callback();
-            }, function(data) {
+            })
+            .error(function(data) {
                 $scope.loading = false;
                 console.log("Erro ao carregar os dados.", data);
                 if(__callback) __callback();
             });
         };
         
+        /**
+         * @function load comments
+         * @param {object} __callback
+         * @returns
+         */
         function loadComments(__callback) {
             $scope.loading = true;
             DetailRepository.getComments($scope.id)
-            .then(function(result){
+            .success(function(data, status, headers, config){
                 $scope.loading = false;
-                $scope.detail.comments = result.data;
+                $scope.detail.comments = data;
                 if(__callback) __callback();
-            }, function(data) {
+            })
+            .error(function(data) {
                 $scope.loading = false;
                 console.log("Erro ao carregar os dados.", data);
                 if(__callback) __callback();
             });
         };
         
+        /**
+         * @function load rating
+         * @param {object} __callback
+         * @returns
+         */
         function loadRatings(__callback) {
             $scope.loading = true;
             DetailRepository.getRatings($scope.id)
-            .then(function(result){
+            .success(function(data, status, headers, config){
                 $scope.loading = false;
-                $scope.detail.ratings = result.data;
+                $scope.detail.ratings = data;
                 if(__callback) __callback();
-            }, function(data) {
+            })
+            .error(function(data) {
                 $scope.loading = false;
                 console.log("Erro ao carregar os dados.", data);
                 if(__callback) __callback();
             });
         };
         
+        /**
+         * @function get movie's images
+         * @param {int} id
+         * @returns
+         */
+        function getImage(movie) {
+            ImageRepository.getImageResource(movie.ids.tmdb)
+            .success(function(data, status, headers, config){
+                movie.images = data;
+                movie.loading = true;
+                $('#movie_image_' + movie.ids.tmdb).on('load', function () {
+                    movie.loading = false;
+                    $scope.safeApply();
+                }.bind(this));
+            })
+            .error(function(data) {
+                console.log("Erro ao carregar os dados.", data);
+            })
+        };
+        
+        /**
+         * @function force angular diggest
+         * @param
+         * @returns
+         */
+        $scope.safeApply = function __safeApply() {
+            var $scope, fn, force = false;
+            if (arguments.length === 1) {
+                var arg = arguments[0];
+                if (typeof arg === 'function') {
+                    fn = arg;
+                } else {
+                    $scope = arg;
+                }
+            } else {
+                $scope = arguments[0];
+                fn = arguments[1];
+                if (arguments.length === 3) {
+                    force = !!arguments[2];
+                }
+            }
+            $scope = $scope || this;
+            fn = fn || function () { };
+
+            if (force || !$scope.$$phase) {
+                $scope.$apply ? $scope.$apply(fn) : $scope.apply(fn);
+            } else {
+                fn();
+            }
+        };
         
         loadMovie(function(){
             loadComments(function(){
